@@ -5,7 +5,7 @@ author = "Reginald Ojunga <https://github.com/KwachOjunga>"
 edition = "2024"
 repository = "https://github.co/KwachOjunga/peek"
 description = """ Quickly get to read file from any line you choose """
-
+license = "Apache-2.0"
 
 [[bin]]
 bench = false
