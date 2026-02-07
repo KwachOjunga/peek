@@ -1,7 +1,16 @@
 [package]
-name = "peek"
+name = "file_peek"
 version = "0.1.0"
+author = "Reginald Ojunga <https://github.com/KwachOjunga>"
 edition = "2024"
+repository = "https://github.co/KwachOjunga/peek"
+description = """ Quickly get to read file from any line you choose """
+
+
+[[bin]]
+bench = false
+name = "fp"
+
 
 [dependencies]
 anyhow = "1.0.100"
