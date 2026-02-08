@@ -1,9 +1,9 @@
 [package]
 name = "file_peek"
-version = "0.1.0"
+version = "0.1.1"
 author = "Reginald Ojunga <https://github.com/KwachOjunga>"
 edition = "2024"
-repository = "https://github.co/KwachOjunga/peek"
+repository = "https://github.com/KwachOjunga/peek"
 description = """ Quickly get to read file from any line you choose """
 license = "Apache-2.0"
 
