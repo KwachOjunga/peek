@@ -109,80 +109,6 @@ fn highlight_line(line: &str) -> Line<'_> {
     }
 }
 
-// fn highlight_line(line: &str) -> Line<'_> {
-//     let mut spans = Vec::new();
-//     let mut current = String::new();
-//     let chars: Vec<char> = line.chars().collect();
-//     let mut i = 0;
-
-//     while i < chars.len() {
-//         let c = chars[i];
-
-//         // Skip whitespace quickly
-//         if c.is_whitespace() {
-//             current.push(c);
-//             i += 1;
-//             continue;
-//         }
-
-//         // Start collecting word
-//         if current.is_empty() && c.is_alphabetic() || c == '_' {
-//             current.push(c);
-//             i += 1;
-//             while i < chars.len() && (chars[i].is_alphanumeric() || chars[i] == '_') {
-//                 current.push(chars[i]);
-//                 i += 1;
-//             }
-
-//             // Classify word
-//             let style = if is_keyword(&current) {
-//                 Style::default().fg(DRACULA_PURPLE).bold()
-//             } else if is_type(&current) {
-//                 Style::default().fg(DRACULA_CYAN)
-//             } else if is_string_delim(c) {
-//                 // handle strings roughly
-//                 Style::default().fg(DRACULA_GREEN)
-//             } else if current.parse::<f64>().is_ok() {
-//                 Style::default().fg(DRACULA_ORANGE)
-//             } else {
-//                 Style::default().fg(DRACULA_FG)
-//             };
-
-//             spans.push(Span::styled(current, style));
-//             current = String::new();
-//             continue;
-//         }
-
-//         // Comments (// or # or /* */ rough detection)
-//         if (c == '/' && i + 1 < chars.len() && chars[i + 1] == '/')
-//             || c == '#'
-//             || (c == '/' && i + 1 < chars.len() && chars[i + 1] == '*')
-//         {
-//             // Rest of line is comment
-//             let comment = line[i..].to_string();
-//             spans.push(Span::styled(
-//                 comment,
-//                 Style::default().fg(DRACULA_COMMENT).italic(),
-//             ));
-//             break;
-//         }
-
-//         // Punctuation/symbols
-//         current.push(c);
-//         i += 1;
-//     }
-
-//     if !current.is_empty() {
-//         spans.push(Span::styled(current, Style::default().fg(DRACULA_FG)));
-//     }
-
-//     if spans.is_empty() {
-//         Line::from(line)
-//     } else {
-//         Line::from(spans)
-//     }
-// }
-
 fn is_keyword(word: &str) -> bool {
     matches!(
         word,
@@ -210,6 +136,8 @@ fn is_keyword(word: &str) -> bool {
             | "Some"
             | "Ok"
             | "Err"
+            | "self"
+            | "macro_rules"
     )
 }
 
@@ -229,6 +157,9 @@ fn is_type(word: &str) -> bool {
             | "PathBuf"
             | "Result"
             | "Option"
+            | "Cell"
+            | "Arc"
+            | "Rc"
     )
 }
 
